@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Tema 23 , Grecu Ionut",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionutgrecu/easybib-integration-demo.git"
+  },
+  "author": "Grecu Ionut",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ionutgrecu/easybib-integration-demo/issues"
+  },
+  "homepage": "https://github.com/ionutgrecu/easybib-integration-demo#readme"
+}
