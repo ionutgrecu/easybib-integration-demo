@@ -65,14 +65,25 @@ app.get("/sync", async (req, res) => {
 app.get("/seed", async (req, res) => {
   try {
     const pubTypes = ["book", "newspaper", "paperwork", "other"];
+    const authorFunctions = ["author", "coauthor", "profesor", "doctor"];
+    
     for (let i = 0; i < 10; i++) {
-      let title = faker.lorem.words(Math.floor(Math.random() * 3)+3);
+      let title = faker.lorem.words(Math.floor(Math.random() * 3) + 3);
       title = title.charAt(0).toUpperCase() + title.slice(1);
 
       let publication = await Publication.create({
         title: title,
         type: pubTypes[Math.floor(Math.random() * 3)],
         documentDate: faker.date.past(50),
+      });
+
+      let authorCount=Math.floor(Math.random()*7)+1
+      for(let j=0;j<authorCount;j++)
+      await Author.create({
+        name: faker.name.findName(),
+        function: authorFunctions[Math.floor(Math.random() * 3)],
+        email: faker.internet.email(),
+        publicationId:publication.id
       });
     }
     res.status(201).json({ message: "Database seeded" });
