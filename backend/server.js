@@ -20,6 +20,7 @@ const Author = sequelize.define("author", {
   name: Sequelize.STRING(64),
   function: Sequelize.STRING(64),
   email: Sequelize.STRING(128),
+  avatar:Sequelize.STRING(128)
 });
 
 const Publication = sequelize.define(
@@ -27,7 +28,7 @@ const Publication = sequelize.define(
   {
     title: Sequelize.STRING(255),
     type: Sequelize.ENUM("book", "newspaper", "paperwork", "other"),
-    documentDate: Sequelize.DATEONLY,
+    publishedAt: Sequelize.DATEONLY
   },
   {
     indexes: [
@@ -66,7 +67,7 @@ app.get("/seed", async (req, res) => {
   try {
     const pubTypes = ["book", "newspaper", "paperwork", "other"];
     const authorFunctions = ["author", "coauthor", "profesor", "doctor"];
-    
+
     for (let i = 0; i < 10; i++) {
       let title = faker.lorem.words(Math.floor(Math.random() * 3) + 3);
       title = title.charAt(0).toUpperCase() + title.slice(1);
@@ -74,22 +75,43 @@ app.get("/seed", async (req, res) => {
       let publication = await Publication.create({
         title: title,
         type: pubTypes[Math.floor(Math.random() * 3)],
-        documentDate: faker.date.past(50),
+        publishedAt: faker.date.past(50),
       });
 
-      let authorCount=Math.floor(Math.random()*7)+1
-      for(let j=0;j<authorCount;j++)
-      await Author.create({
-        name: faker.name.findName(),
-        function: authorFunctions[Math.floor(Math.random() * 3)],
-        email: faker.internet.email(),
-        publicationId:publication.id
-      });
+      let authorCount = Math.floor(Math.random() * 7) + 1;
+      for (let j = 0; j < authorCount; j++)
+        await Author.create({
+          name: faker.name.findName(),
+          function: authorFunctions[Math.floor(Math.random() * 3)],
+          email: faker.internet.email(),
+          avatar:faker.image.avatar(),
+          publicationId: publication.id,
+        });
     }
     res.status(201).json({ message: "Database seeded" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Error seed" });
+  }
+});
+
+app.get("/publications", async (req, res) => {
+  try {
+    const publications = await Publication.findAll({ include: Author }); //Eager loading
+    res.status(200).json(publications);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error getting books" });
+  }
+});
+
+app.post("/publications", async (req, res) => {
+  try {
+    await Publication.create(req.body);
+    res.status(201).json({ message: "publication created" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error posting books" });
   }
 });
 
