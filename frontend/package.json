@@ -2,18 +2,47 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "Tema 23 , Grecu Ionut",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ionutgrecu/easybib-integration-demo.git"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "author": "Grecu Ionut",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ionutgrecu/easybib-integration-demo/issues"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "homepage": "https://github.com/ionutgrecu/easybib-integration-demo#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.0",
+    "bootstrap": "^4.5.3",
+    "date-fns": "^2.16.1",
+    "fbemitter": "^2.1.1",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
+    "react-date-picker": "^8.0.3",
+    "react-datepicker": "^3.3.0",
+    "react-dom": "^17.0.1",
+    "react-dropbox-chooser": "0.0.5",
+    "react-scripts": "4.0.0",
+    "web-vitals": "^0.2.4"
+  }
 }
