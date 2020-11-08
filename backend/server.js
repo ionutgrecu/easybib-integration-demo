@@ -5,22 +5,17 @@ const Sequelize = require("sequelize");
 const cors = require("cors");
 const faker = require("faker");
 
-const sequelize = new Sequelize(
-  "bib",
-  "bib_user",
-  "5O7EkA8O2A7E5u6u5Ey4su6Inac3tE",
-  {
-    host: "s1.websea.net",
-    port: 13000,
-    dialect: "mariadb",
-  }
-);
+const sequelize = new Sequelize("bib", "bib_user", "5O7EkA8O2A7E5u6u5Ey4su6Inac3tE", {
+  host: "s1.websea.net",
+  port: 13000,
+  dialect: "mariadb",
+});
 
 const Author = sequelize.define("author", {
   name: Sequelize.STRING(64),
   function: Sequelize.STRING(64),
   email: Sequelize.STRING(128),
-  avatar:Sequelize.STRING(128)
+  avatar: Sequelize.STRING(128),
 });
 
 const Publication = sequelize.define(
@@ -28,7 +23,7 @@ const Publication = sequelize.define(
   {
     title: Sequelize.STRING(255),
     type: Sequelize.ENUM("book", "newspaper", "paperwork", "other"),
-    publishedAt: Sequelize.DATEONLY
+    publishedAt: Sequelize.DATEONLY,
   },
   {
     indexes: [
@@ -84,7 +79,7 @@ app.get("/seed", async (req, res) => {
           name: faker.name.findName(),
           function: authorFunctions[Math.floor(Math.random() * 3)],
           email: faker.internet.email(),
-          avatar:faker.image.avatar(),
+          avatar: faker.image.avatar(),
           publicationId: publication.id,
         });
     }
@@ -112,6 +107,35 @@ app.post("/publications", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Error posting books" });
+  }
+});
+
+app.put("/publications/:pid", async (req, res) => {
+  try {
+    const publication = await Publication.findByPk(req.params.pid);
+    if (publication) {
+      publication.title = req.body.title ? req.body.title : publication.title;
+      publication.type = req.body.type ? req.body.type : publication.type;
+      publication.publishedAt = req.body.publishedAt ? req.body.publishedAt : publication.publishedAt;
+      await publication.save();
+      res.status(202).json({ message: "publication saved" });
+    } else res.status(404).json({ message: "Publication not found" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error posting books" });
+  }
+});
+
+app.delete("/publications/:pid", async (req, res) => {
+  try {
+    const publication = await Publication.findByPk(req.params.pid);
+    if (publication) {
+      publication.destroy();
+      res.status(202).json({ message: "publication deleted" });
+    } else res.status(404).json({ message: "Publication not found" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error deleting books" });
   }
 });
 
