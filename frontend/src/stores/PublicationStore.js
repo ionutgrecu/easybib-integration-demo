@@ -17,4 +17,4 @@ class PublicationStore {
             this.emitter.emit('GET_PUBLICATIONS_SUCCESS')
         }
     }
-}
+} export default PublicationStore
