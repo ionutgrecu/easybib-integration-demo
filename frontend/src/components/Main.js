@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Table } from "react-bootstrap"
 import PublicationStore from '../stores/PublicationStore'
+import Publication from './Publication'
 
 class Main extends React.Component {
     constructor() {
@@ -40,9 +41,9 @@ class Main extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.store.publications.map(e)=>(
-                                        
-                                    )}
+                                    {this.state.store.publications.map((e)=>{
+                                        <Publication key={e.id} item={e} />
+                                    })}
                                 </tbody>
                             </Table>
                         </Col>
