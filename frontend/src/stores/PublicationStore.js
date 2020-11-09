@@ -11,10 +11,10 @@ class PublicationStore {
     async getPublications(){
         try {
             const response=await axios.get(`${SERVER_URL}/publications`)
-            this.documents=response.data
+            this.publications=response.data
             this.emitter.emit('GET_PUBLICATIONS_SUCCESS')
         } catch (error) {
-            this.emitter.emit('GET_PUBLICATIONS_SUCCESS')
+            this.emitter.emit('GET_PUBLICATIONS_ERROR')
         }
     }
 } export default PublicationStore

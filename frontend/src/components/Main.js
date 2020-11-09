@@ -33,17 +33,17 @@ class Main extends React.Component {
                             <Table striped bordered>
                                 <thead>
                                     <tr>
-                                    <th>ID</th>
-                                    <th>Title</th>
-                                    <th>Type</th>
-                                    <th>Publish Date</th>
-                                    <th>&nbsp;</th>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Type</th>
+                                        <th>Publish Date</th>
+                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.store.publications.map((e)=>{
-                                        <Publication key={e.id} item={e} />
-                                    })}
+                                    {
+                                        this.state.publications.map((e) => <Publication key={e.id} item={e} />)
+                                    }
                                 </tbody>
                             </Table>
                         </Col>
