@@ -52,7 +52,7 @@ class PublicationForm extends React.Component {
                             </Form.Group>
 
                             <Form.Row>
-                                <Button variant="primary" type="submit">
+                                <Button variant="primary" type="submit" className="mr-1">
                                     Save
                                 </Button>
                                 <Button variant="danger" type="button">
