@@ -21,8 +21,12 @@ class Main extends React.Component {
             })
         }
 
-        this.hideForm=()=>{
-            this.setState({isEditing:false})
+        this.hideForm = () => {
+            this.setState({ isEditing: false })
+        }
+
+        this.add = (publication) => {
+            this.store.addPublication(publication)
         }
     }
 
@@ -77,6 +81,6 @@ class Main extends React.Component {
                 </>
             )
         else
-            return <PublicationForm onHideForm={this.hideForm} />
+            return <PublicationForm onHideForm={this.hideForm} onAdd={this.add} />
     }
 } export default Main

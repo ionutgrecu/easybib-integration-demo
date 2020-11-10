@@ -24,8 +24,16 @@ class PublicationForm extends React.Component {
             this.publishedAt = format(e, 'yyyy-MM-dd')
         }
 
-        this.hideForm=()=>{
+        this.hideForm = () => {
             this.props.onHideForm()
+        }
+
+        this.add = () => {
+            this.props.onAdd({
+                title: this.state.title,
+                type: this.state.type,
+                publishedAt: this.state.documentDate
+            })
         }
     }
 
@@ -56,7 +64,7 @@ class PublicationForm extends React.Component {
                             </Form.Group>
 
                             <Form.Row>
-                                <Button variant="primary" type="submit" className="mr-1">
+                                <Button variant="primary" type="submit" className="mr-1" onClick={this.add}>
                                     Save
                                 </Button>
                                 <Button variant="danger" type="button" onClick={this.hideForm}>
