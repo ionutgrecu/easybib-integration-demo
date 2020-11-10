@@ -23,6 +23,10 @@ class PublicationForm extends React.Component {
             this.setState({ publishedAt: e })
             this.publishedAt = format(e, 'yyyy-MM-dd')
         }
+
+        this.hideForm=()=>{
+            this.props.onHideForm()
+        }
     }
 
     render() {
@@ -55,7 +59,7 @@ class PublicationForm extends React.Component {
                                 <Button variant="primary" type="submit" className="mr-1">
                                     Save
                                 </Button>
-                                <Button variant="danger" type="button">
+                                <Button variant="danger" type="button" onClick={this.hideForm}>
                                     Cancel
                                 </Button>
                             </Form.Row>

@@ -20,6 +20,10 @@ class Main extends React.Component {
                 isEditing: true
             })
         }
+
+        this.hideForm=()=>{
+            this.setState({isEditing:false})
+        }
     }
 
     componentDidMount() {
@@ -73,6 +77,6 @@ class Main extends React.Component {
                 </>
             )
         else
-            return <PublicationForm />
+            return <PublicationForm onHideForm={this.hideForm} />
     }
 } export default Main
