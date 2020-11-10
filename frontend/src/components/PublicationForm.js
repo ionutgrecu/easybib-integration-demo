@@ -9,9 +9,9 @@ class PublicationForm extends React.Component {
         super(props)
 
         this.state = {
-            title: "",
-            type: "other",
-            publishedAt: new Date()
+            title: this.props.item ? this.props.item.title : "",
+            type: this.props.item ? this.props.item.type : "other",
+            publishedAt: this.props.item ? this.props.item.publishedAt : new Date()
         }
 
         this.handleChange = (e) => {
@@ -25,7 +25,7 @@ class PublicationForm extends React.Component {
         }
 
         this.hideForm = () => {
-            this.props.onHideForm()
+            this.props.onHide()
         }
 
         this.add = () => {
@@ -45,12 +45,12 @@ class PublicationForm extends React.Component {
                         <Form>
                             <Form.Group>
                                 <Form.Label>Publication title</Form.Label>
-                                <Form.Control type="text" name="title" placeholder="Ex: Lorem ipsum dolor sit amet" onChange={this.handleChange} />
+                                <Form.Control type="text" name="title" placeholder="Ex: Lorem ipsum dolor sit amet" onChange={this.handleChange} value={this.state.title} />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Publication type</Form.Label>
-                                <Form.Control as="select" name="type" onChange={this.handleChange}>
+                                <Form.Control as="select" name="type" onChange={this.handleChange} value={this.state.type}>
                                     <option>book</option>
                                     <option>newspaper</option>
                                     <option>paperwork</option>
@@ -60,7 +60,7 @@ class PublicationForm extends React.Component {
 
                             <Form.Group>
                                 <Form.Label>Publication date</Form.Label>
-                                <DatePicker name="publishedAt" dateFormat="yyyy-MM-dd" onChange={this.dateChange} selected={this.state.publishedAt} />
+                                <DatePicker name="publishedAt" dateFormat="yyyy-MM-dd" onChange={this.dateChange} selected={this.state.publishedAt} selected={this.state.publishedAt} />
                             </Form.Group>
 
                             <Form.Row>
