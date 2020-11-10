@@ -60,7 +60,7 @@ class PublicationForm extends React.Component {
 
                             <Form.Group>
                                 <Form.Label>Publication date</Form.Label>
-                                <DatePicker name="publishedAt" dateFormat="yyyy-MM-dd" onChange={this.dateChange} />
+                                <DatePicker name="publishedAt" dateFormat="yyyy-MM-dd" onChange={this.dateChange} selected={this.state.publishedAt} />
                             </Form.Group>
 
                             <Form.Row>
