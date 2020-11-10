@@ -1,4 +1,6 @@
 import React from "react";
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class Publication extends React.Component {
     constructor(props) {
@@ -6,6 +8,23 @@ class Publication extends React.Component {
 
         this.state = {
             title: this.props.item.title
+        }
+
+        this.delete = () => {
+            confirmAlert({
+                title: 'Deleting',
+                message: 'Delete this item?',
+                buttons: [
+                    {
+                        label: 'Yes',
+                        onClick: () => this.props.onDelete(this.props.item.id)
+                    },
+                    {
+                        label: 'No',
+                        onClick: () => { }
+                    }
+                ]
+            })
         }
     }
 

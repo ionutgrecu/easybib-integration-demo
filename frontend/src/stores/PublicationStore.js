@@ -28,4 +28,14 @@ class PublicationStore {
             this.emitter.emit('ADD_PUBLICATION_ERROR')
         }
     }
+
+    async deletePublication(id) {
+        try {
+            await axios.delete(`${SERVER_URL}/publications/${id}`)
+            this.getPublications()
+        } catch (error) {
+            console.log(error)
+            this.emitter.emit('DEL_PUBLICATION_ERROR')
+        }
+    }
 } export default PublicationStore

@@ -28,6 +28,10 @@ class Main extends React.Component {
         this.add = (publication) => {
             this.store.addPublication(publication)
         }
+
+        this.delete = (id) => {
+            this.store.deletePublication(id)
+        }
     }
 
     componentDidMount() {
@@ -71,7 +75,7 @@ class Main extends React.Component {
                                     </thead>
                                     <tbody>
                                         {
-                                            this.state.publications.map((e) => <Publication key={e.id} item={e} />)
+                                            this.state.publications.map((e) => <Publication key={e.id} item={e} onDelete={this.delete} />)
                                         }
                                     </tbody>
                                 </Table>
