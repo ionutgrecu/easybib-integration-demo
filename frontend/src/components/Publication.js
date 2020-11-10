@@ -16,13 +16,18 @@ class Publication extends React.Component {
             <>
                 <tr>
                     <td>{item.id}</td>
-                    <td>{item.title}<br /><small><strong>Authors:</strong>
-                        {item.authors.map((i) =>
+                    <td>{item.title}
+                        {item.authors.length ? (
                             <>
-                                <span>{i.name}</span>, &nbsp;
+                                <br /><small><strong>Authors:</strong>
+                                    {item.authors.map((i) =>
+                                        <>
+                                            <span>{i.name}</span> &nbsp;
+                                        </>
+                                    )}
+                                </small>
                             </>
-                        )}
-                    </small></td>
+                        ) : ''}</td>
                     <td>{item.type}</td>
                     <td>{item.publishedAt}</td>
                     <td><a className="btn btn-info" title="Edit">
