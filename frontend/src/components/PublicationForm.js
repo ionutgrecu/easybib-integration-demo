@@ -11,7 +11,7 @@ class PublicationForm extends React.Component {
         this.state = {
             title: this.props.item ? this.props.item.title : "",
             type: this.props.item ? this.props.item.type : "other",
-            publishedAt: this.props.item ? this.props.item.publishedAt : new Date()
+            publishedAt: this.props.item ? Date.parse(this.props.item.publishedAt) : new Date()
         }
 
         this.handleChange = (e) => {
@@ -60,7 +60,7 @@ class PublicationForm extends React.Component {
 
                             <Form.Group>
                                 <Form.Label>Publication date</Form.Label>
-                                <DatePicker name="publishedAt" dateFormat="yyyy-MM-dd" onChange={this.dateChange} selected={this.state.publishedAt} selected={this.state.publishedAt} />
+                                <DatePicker name="publishedAt" dateFormat="yyyy-MM-dd" onChange={this.dateChange} selected={this.state.publishedAt} />
                             </Form.Group>
 
                             <Form.Row>

@@ -85,6 +85,6 @@ class Main extends React.Component {
                 </>
             )
         else
-            return <PublicationForm onHideForm={this.hideForm} onAdd={this.add} />
+            return <PublicationForm onHide={this.hideForm} onAdd={this.add} />
     }
 } export default Main
