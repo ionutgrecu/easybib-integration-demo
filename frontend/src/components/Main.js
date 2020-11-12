@@ -32,6 +32,12 @@ class Main extends React.Component {
         this.delete = (id) => {
             this.store.deletePublication(id)
         }
+
+        this.easybibAuth = () => {
+            let browser = window.self
+            // console.log(browser.open('https://id.easybib.com/oauth/authorize?response_type=code&client_id=05f3a2b2380d47b393564ce1f4da2de30a5c34b5cb2470f8bd4b24c715ab4081', 'easybib', `dependent=${1}, alwaysOnTop=${1}, alwaysRaised=${1}, alwaysRaised=${1}, width=${700}, height=${550}`))
+            browser.location.href = 'https://id.easybib.com/oauth/authorize?response_type=code&client_id=05f3a2b2380d47b393564ce1f4da2de30a5c34b5cb2470f8bd4b24c715ab4081'
+        }
     }
 
     componentDidMount() {
@@ -56,6 +62,9 @@ class Main extends React.Component {
                             <ul className="navbar-nav">
                                 <li className="nav-item">
                                     <a className="nav-link" onClick={this.showForm}><i className="fas fa-plus"></i> Add Publication</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" onClick={this.easybibAuth}><i className="fas fa-plus"></i> Easybib</a>
                                 </li>
                             </ul>
                         </div>
