@@ -40,4 +40,5 @@ ___
 ### Author
 [Ionut Grecu](https://grecu.eu)
 
+https://github.com/ionutgrecu/easybib-integration-demo
 
